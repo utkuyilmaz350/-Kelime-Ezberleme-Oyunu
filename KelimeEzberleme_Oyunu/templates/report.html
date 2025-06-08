@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Analiz Raporu{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+          <h2 class="fw-bold">Analiz Raporu</h2>
+          <p class="text-muted">Kelime ezberleme performansınızı takip edin</p>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card bg-primary text-white">
+              <div class="card-body text-center">
+                <i class="fas fa-book fa-2x mb-3"></i>
+                <h3 class="fw-bold">{{ total }}</h3>
+                <p class="mb-0">Toplam Kelime</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-success text-white">
+              <div class="card-body text-center">
+                <i class="fas fa-check-circle fa-2x mb-3"></i>
+                <h3 class="fw-bold">{{ known }}</h3>
+                <p class="mb-0">Bildiğiniz Kelime</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-info text-white">
+              <div class="card-body text-center">
+                <i class="fas fa-percentage fa-2x mb-3"></i>
+                <h3 class="fw-bold">{{ percent }}%</h3>
+                <p class="mb-0">Başarı Oranı</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h4 class="fw-bold mb-4">
+              <i class="fas fa-list-check me-2"></i>Bildiğiniz Kelimeler
+            </h4>
+            {% if known_words %}
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>İngilizce</th>
+                      <th>Türkçe</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for word in known_words %}
+                      <tr>
+                        <td>{{ word['EngWordName'] }}</td>
+                        <td>{{ word['TurWordName'] }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            {% else %}
+              <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                Henüz hiç kelimeyi 6 kez doğru bilmediniz.
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block title %}Kelime Ekle{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
+          <h2 class="fw-bold">Kelime Ekle</h2>
+          <p class="text-muted">Yeni kelimeler ekleyerek kelime haznenizi genişletin</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" id="wordForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="eng" class="form-label">
+                <i class="fas fa-language me-2"></i>İngilizce Kelime
+              </label>
+              <input type="text" class="form-control" id="eng" name="eng" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="tur" class="form-label">
+                <i class="fas fa-language me-2"></i>Türkçe Karşılığı
+              </label>
+              <input type="text" class="form-control" id="tur" name="tur" required>
+            </div>
+          </div>
+
+          <div id="samples-area" class="mb-3">
+            <label class="form-label">
+              <i class="fas fa-quote-right me-2"></i>Örnek Cümle(ler)
+            </label>
+            <input type="text" class="form-control mb-2" name="samples" placeholder="Örnek cümle" required>
+          </div>
+          
+          <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addSample()">
+            <i class="fas fa-plus me-1"></i>Yeni Örnek Cümle
+          </button>
+
+          <div class="mb-3">
+            <label for="picture" class="form-label">
+              <i class="fas fa-image me-2"></i>Resim (opsiyonel)
+            </label>
+            <input type="file" class="form-control" id="picture" name="picture" accept="image/*">
+          </div>
+
+          <div class="mb-4">
+            <label for="pronunciation" class="form-label">
+              <i class="fas fa-volume-up me-2"></i>Sesli Okunuş
+            </label>
+            <input type="text" class="form-control mb-2" id="pronunciation" name="pronunciation" placeholder="Okunuşu metin olarak yazın (örn: brɛɪn)">
+            <input type="file" class="form-control" id="pronunciation_file" name="pronunciation_file" accept="audio/*">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 py-2">
+            <i class="fas fa-save me-2"></i>Kaydet
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="fw-bold mb-4">
+          <i class="fas fa-list me-2"></i>Eklenen Kelimeler
+        </h4>
+        <div class="row g-4">
+          {% for word in words %}
+            <div class="col-md-6">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold">{{ word.EngWordName }}</h5>
+                  <p class="card-text text-muted">{{ word.TurWordName }}</p>
+                  
+                  {% if word.Picture %}
+                    <img src="/{{ word.Picture }}" alt="Resim" class="img-fluid rounded mb-2" style="max-height: 150px;">
+                  {% endif %}
+                  
+                  {% if word.Pronunciation %}
+                    <span class="badge bg-info mb-2">
+                      <i class="fas fa-volume-up me-1"></i>{{ word.Pronunciation }}
+                    </span>
+                  {% endif %}
+                  
+                  {% if word.PronunciationFile %}
+                    <div class="mb-2">
+                      <audio controls class="w-100">
+                        <source src="/{{ word.PronunciationFile }}" type="audio/mpeg">
+                      </audio>
+                    </div>
+                  {% endif %}
+                  
+                  <div class="mt-3">
+                    <h6 class="fw-bold">Örnek Cümleler:</h6>
+                    <ul class="list-unstyled">
+                      {% for sample in word.samples %}
+                        <li class="mb-2">
+                          <i class="fas fa-quote-left text-muted me-2"></i>{{ sample }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function addSample() {
+  var area = document.getElementById('samples-area');
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'samples';
+  input.className = 'form-control mb-2';
+  input.placeholder = 'Örnek cümle';
+  area.appendChild(input);
+}
+</script>
+{% endblock %} 

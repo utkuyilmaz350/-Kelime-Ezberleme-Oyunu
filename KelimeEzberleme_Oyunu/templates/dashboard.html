@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Ana Sayfa{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <div class="card mb-4">
+      <div class="card-body text-center p-5">
+        <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+        <h2 class="fw-bold mb-3">Hoşgeldin, {{ username }}!</h2>
+        <p class="text-muted">Kelime ezberleme sistemine hoşgeldiniz. Aşağıdaki modüllerden istediğinizi seçerek başlayabilirsiniz.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-plus-circle fa-2x text-primary mb-3"></i>
+            <h5 class="card-title fw-bold">Kelime Ekle</h5>
+            <p class="card-text text-muted">Yeni kelimeler ekleyerek kelime haznenizi genişletin.</p>
+            <a href="/add_word" class="btn btn-primary w-100">
+              <i class="fas fa-plus me-2"></i>Kelime Ekle
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-question-circle fa-2x text-success mb-3"></i>
+            <h5 class="card-title fw-bold">Sınava Başla</h5>
+            <p class="card-text text-muted">Bilgilerinizi test edin ve kendinizi geliştirin.</p>
+            <a href="/quiz" class="btn btn-success w-100">
+              <i class="fas fa-play me-2"></i>Sınava Başla
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-chart-bar fa-2x text-info mb-3"></i>
+            <h5 class="card-title fw-bold">Analiz Raporu</h5>
+            <p class="card-text text-muted">İlerlemenizi ve performansınızı takip edin.</p>
+            <a href="/report" class="btn btn-info w-100 text-white">
+              <i class="fas fa-chart-line me-2"></i>Raporu Gör
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-cog fa-2x text-secondary mb-3"></i>
+            <h5 class="card-title fw-bold">Ayarlar</h5>
+            <p class="card-text text-muted">Hesap ayarlarınızı özelleştirin.</p>
+            <a href="/settings" class="btn btn-secondary w-100">
+              <i class="fas fa-cog me-2"></i>Ayarlar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-gamepad fa-2x text-warning mb-3"></i>
+            <h5 class="card-title fw-bold">Wordle</h5>
+            <p class="card-text text-muted">Eğlenceli bir kelime oyunu oynayın.</p>
+            <a href="/wordle" class="btn btn-warning w-100">
+              <i class="fas fa-gamepad me-2"></i>Wordle Oyna
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,19 @@
+.countdown-timer .card {
+    min-width: 100px;
+}
+
+.progress {
+    height: 10px;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+#timer-data {
+    display: none;
+} 
